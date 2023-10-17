@@ -1,0 +1,4 @@
+apiVersion: v2
+name: demo
+description: A Helm chart for the demo application
+version: 0.1.0

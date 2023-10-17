@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Restaurant Finder India</title>
+    <!--link rel="stylesheet" href="./css/style.css"-->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <style>
+      #banner {    
+    /* Linear gradient overlay */
+    background-image: url("https://hips.hearstapps.com/hmg-prod/images/table-filled-with-large-variety-of-food-shot-from-royalty-free-image-1659038707.jpg?crop=1xw:0.84335xh;center,top&resize=1200:*"), linear-gradient(#00000099, #00000099);
+    width: 100%;
+  height: 85vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-blend-mode: overlay;
+}
+
+#search-section {
+  width: 60%;
+  height: 40px;
+  position: relative;
+  margin-top: 40px;
+}
+#search-section input {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  padding: 10px 35px;
+}
+#search-section i {
+  position: absolute;
+  top: 12px;
+  left: 10px;
+}
+#search-section button {
+  position: absolute;
+  height: 100%;
+  top: 0;
+  right: 0;
+  font-weight: bolder;
+}
+main {
+  margin-top: 40px;
+  font-weight: bold;
+}
+
+#cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+.card {
+  width: 100%;
+}
+
+.card-img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+.modal-body {
+  height: 70vh;
+}
+.modal-body::-webkit-scrollbar {
+  display: none;
+}
+.modal-body {
+  overflow-x: auto;
+}
+
+@media (max-width: 900px) {
+  #cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  #search-section {
+    width: 98%;
+  }
+  #cards {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .sign-up {
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+}
+
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <a class="navbar-brand" href="#">
+            <h2>CICD Pipeline Working</h2>
+            <!--img src="./images/Tasty_HUT.png" alt="IMAGE"-->
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a
+                  class="nav-link btn btn-warning sign-up"
+                  aria-current="page"
+                  href="#"
+                  >Sign Up</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- banner  -->
+      <section
+        id="banner"
+        class="d-flex flex-column justify-content-center align-items-center"
+      >
+        <div class="container">
+          <h1 class="text-center text-white">
+            Taste Our Delicious <br />Best Foods
+          </h1>
+          <!--p class="text-center text-white">
+            There are many variations of passages of Lorem Ipsum available, but
+            the majority have <br />
+            suffered alteration in some form, by injected humou.
+          </p-->
+          <div class="mx-auto" id="search-section">
+            <input type="text" id="search-input" autocomplete="off" />
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <button class="btn btn-warning" id="search-btn">search</button>
+          </div>
+        </div>
+      </section>
+    </header>
+
+    <!-- main contains -->
+    <main>
+      <h2 class="text-center">Your Favourite Food</h2>
+      <section id="cards" class="container"></section>
+      <!-- madal  -->
+      <!-- Button trigger modal -->
+
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="staticBackdrop"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="staticBackdropLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1
+                class="meal-title modal-title fs-5"
+                id="staticBackdropLabel"
+              ></h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">...</div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- show all btn  -->
+      <div class="container d-flex justify-content-center mt-5 pb-5">
+        <button class="btn btn-warning" id="show-all-btn">Show All</button>
+      </div>
+    </main>
+<!--   -------------------------------------------------JAVASCRIPT****************-->
+    <script>
+      console.log("HELLO WORLD")
+let searchValue;
+
+const showDetails = async (id) => {
+    try {
+        let url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`
+        let response = await fetch(url);
+        let data = await response.json();
+        let title = document.querySelector(".meal-title");
+        let body = document.querySelector(".modal-body");
+        console.log(data)
+        title.innerText = `${data.meals[0].strMeal}`
+        body.innerHTML = `<img class="img-fluid" src="${data.meals[0].strMealThumb}">
+        <p class="mt-5">${data.meals[0].strInstructions}</p>
+        `
+    } catch (err) {
+        alert("something is wrong")
+    }
+}
+const showMealCard = async (mealName, show = 6) => {
+    
+    try {
+        const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${mealName}`;
+        const response = await fetch(url);
+        const data = await response.json();
+        const cards = document.getElementById("cards");
+        let meals = data.meals; 
+        console.log(data)
+        console.log(meals)
+        cards.innerHTML = "";
+        let showMeals =  show === true ? meals.length : meals.length < 6    ? meals.length : show;
+        for(let i = 0; i < showMeals; i++) {
+        let card = document.createElement("div");
+        card.innerHTML = `
+        <div class="card mb-3 " style="max-width: 540px">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <img
+                src="${meals[i].strMealThumb}"
+                class="card-img"
+                alt="..."
+              />
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">${meals[i].strMeal}</h5>
+                <p class="card-text">
+                  ${meals[i].strTags === null ? meals[i].strMeal : meals[i].strTags}
+                </p>
+                <button onclick="showDetails(${meals[i].idMeal})" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Details</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        `
+
+        cards.appendChild(card)
+        }       
+} catch (err) {
+        alert("please inter valid name");
+    }
+}
+
+const searchMeal = () => {    
+        const input = document.getElementById("search-input");
+        const inputValue = input.value;
+        showMealCard(inputValue,);   
+        searchValue = inputValue;
+    
+}
+
+
+
+const searchBtn = document.getElementById("search-btn");
+searchBtn.addEventListener("click", searchMeal)
+const showAllBtn = document.getElementById("show-all-btn");
+showAllBtn.onclick = () => {
+    showMealCard(searchValue, true); 
+}
+
+
+
+    </script>
+  </body>
+</html>
